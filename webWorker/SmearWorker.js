@@ -14,8 +14,7 @@ function smear(pixels) {
     var n = 10, m = n - 1;
     for (var row = 0; row < height; row++) {//每一行
         var i = row * width * 4 + 4;//第二个像素偏移
-        for (var col = 1; col < width; col++, i += 4) {
-            每一列
+        for (var col = 1; col < width; col++, i += 4) {//每一列
             data[i] = (data[i] + data[i - 4] * m) / n;//红色像素分量
             data[i + 1] = (data[i + 1] + data[i - 3] * m) / n;//绿色
             data[i + 2] = (data[i + 2] + data[i - 2] * m) / n;//蓝色

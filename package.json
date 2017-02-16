@@ -16,7 +16,5 @@
     "url": "https://github.com/dirkliu/exercisejs/issues"
   },
   "homepage": "https://github.com/dirkliu/exercisejs#readme",
-  "dependencies": {
-    "express": "^4.14.1"
-  }
+  "dependencies": {}
 }
