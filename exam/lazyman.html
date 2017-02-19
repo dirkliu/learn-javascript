@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazyman</title>
+</head>
+<body>
+<p>编写函数LazyMan，实现如下功能：</p>
+<code>LazyMan('Jason').doSports('swimming').sleep(10).doWork('coding');</code>
+<p>输出：</p>
+<code>
+    My name is Jason
+    I am swiming
+    //等待10秒钟
+    I am coding
+</code>
+<script>
+    var LazyMan = (function () {
+        var callbacks = [];
+        var isRunning = false;
+
+        function _addFunc(callback, delay) {
+            callback.delay = delay;
+            callbacks.push(callback);
+
+            if (!isRunning) {
+                isRunning=true;
+                _next(callbacks);
+            }
+        }
+
+        function _next(callbacks) {
+            if (!callbacks.length) {
+                isRunning = false;
+            } else {
+                var callback = callbacks.shift();
+                if(callback.delay){
+                    setTimeout(function(){
+                        callback();
+                        _next(callbacks);
+                    },callback.delay);
+                }else{
+                    callback();
+                    _next(callbacks);
+                }
+            }
+        }
+
+        function _lazyMan(name) {
+            if (this instanceof LazyMan) {
+                this.name = name;
+                console.log('My name is ' + this.name);
+                return this;
+            } else {
+                return new LazyMan(name);
+            }
+        }
+
+        _lazyMan.prototype.doSports = function (sport) {
+            _addFunc(function () {
+                console.log('I am ' + sport);
+            });
+            return this;
+        }
+
+        _lazyMan.prototype.sleep = function (time) {
+            _addFunc(function () {
+            }, time * 1000);
+            return this;
+        }
+
+        return _lazyMan;
+    })();
+    LazyMan('Jason').doSports('running').sleep(10).doSports('walking');
+</script>
+</body>
+</html>
