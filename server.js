@@ -20,4 +20,4 @@ http.createServer(function (req, res) {
         res.end(file);
     });
     console.log('Static server is running! ROOT:', __dirname);
-}).listen(3000);
+}).listen(80);
