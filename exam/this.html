@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JAVASCRIPT this的指向问题</title>
+</head>
+<body>
+<h1>JAVASCRIPT this的指向问题</h1>
+<ul>
+    <li>1.全局作用域中的this指向window</li>
+    <li>2.非严格模式下函数中的this指向window</li>
+    <li>3.严格模式下函数中的this指向undefined</li>
+    <li>4.对象的方法中的this指向的是对象本身</li>
+    <li>5.对象中定义的函数跟其他地方定义的函数类似（undefined\window）</li>
+</ul>
+<script>
+    (function () {
+        'use strict';
+        function testFunc() {
+            console.log('严格模式下', this);
+        }
+
+        console.log('匿名函数下的this:',this);
+
+        testFunc();//undefined;
+
+        //试试一个对象
+        var testObj = {
+            name:'testObj',
+            show:function(){
+                console.log('对象中方法的this:',this);//testObj{}
+                function test(){
+                    console.log('对象中定义的函数this:',this);
+                }
+                test();
+            }
+        }
+
+        testObj.show();
+    })();
+
+    function outSide() {
+        console.log('非严格模式下的t函数内部的this：', this);//window
+    }
+    outSide();
+    function outSideStrict() {
+        'use strict';
+        console.log('函数里面使用严格模式的this：', this);//undefined
+    }
+    outSideStrict();//输出undefined;
+
+    console.log('全局作用域的this：',this);
+</script>
+</body>
+</html>
