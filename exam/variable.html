@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>JavaScript的变量声明与声明提前</h1>
+<ul>
+    <li>1.不管在何时声明的变量和函数，在整个作用域中是可以被访问到的。</li>
+    <li>2.先执行var 和 function等声明语句</li>
+    <li>3.浏览器中，全局作用域中声明的变量是window对象的属性，函数是window的方法</li>
+</ul>
+window.name与name；
+变量提升：只是申明了一个变量，但并未执行赋值语句（面试是弄错的）
+<div id="test"></div>
+<script>
+    'use strict';
+    //全局变量和函数都是作为
+    var name='json';
+    window.name='liu';
+    console.log(name);
+    console.log(window.name);
+
+    function testFunc(){
+    }
+    testFunc();
+    console.log('window.testFunc:',window.testFunc);
+    var Liu={
+        name:'liuqi',
+        showName:function(){
+            console.log(name);
+            var name=this.name;
+            console.log(name);
+        }
+    }
+
+    function outShowName(){
+        console.log(name);
+        var name='Json Liuqi';
+        console.log(name);
+    }
+    Liu.showName();
+    outShowName();
+
+    //改变arguments对象是可以改变函数参数的;
+    function changeArguments(x,y){
+        arguments[1]=1;
+        console.log(x+y);
+    }
+    changeArguments(1,5);
+</script>
+</body>
+</html>

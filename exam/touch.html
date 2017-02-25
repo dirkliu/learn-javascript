@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手机滑动页面</title>
+    <style type="text/css">
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .main {
+            height: 200px;
+            width: 100%;
+            background-color: #2f83c7;
+        }
+    </style>
+</head>
+<body>
+<div class="main" id="main">手机滑动测试2</div>
+<ul></ul>
+<script>
+    var ul = document.getElementsByTagName('ul')[0];
+    var li = document.createElement('li');
+    var mainDom = document.getElementById("main");
+
+    mainDom.addEventListener('click', function () {
+        console.log('click is trigger');
+        var liDom = li.cloneNode(true);
+        console.log('liDom:', liDom);
+        liDom.innerHTML = "clicks";
+        ul.appendChild(liDom);
+    }, false);
+
+    mainDom.addEventListener('touchstart', function () {
+        console.log('touchstart is trigger');
+        var liDom = li.cloneNode(true);
+        liDom.innerHTML = 'touchStarts';
+        ul.appendChild(liDom);
+    }, false)
+</script>
+</body>
+</html>
