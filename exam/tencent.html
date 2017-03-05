@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>腾讯面试题测试</title>
+</head>
+<body>
+面试题:
+只能一声叹息了，当时做题时不细心，跳坑里了
+(a,b)();像这样的括号里面，是两个函数，只会执行最后一个；
+函数内的变量不声明
+<script>
+    var x=10;
+    var foo={
+        x:20,
+        bar:function(){
+            x=30;
+            return this.x;
+        }
+    }
+    console.log('foo.bar():',foo.bar());
+    console.log('(foo.bar)():',(foo.bar)());
+    console.log('(foo.bar=foo.bar)():',(foo.bar=foo.bar)());
+    console.log('(foo.bar,foo.bar)():',(foo.bar,foo.bar)());
+    console.log('foo.bar.call(window):',foo.bar.call(window));
+    console.log('foo.bar.call(foo):',foo.bar.call(foo));
+
+    function a(){
+        console.log('a');
+    }
+
+    function b(){
+        console.log('b');
+    }
+    (a,b)();
+</script>
+</body>
+</html>
