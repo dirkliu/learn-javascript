@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>事件触发器</title>
+  <meta charset="UTF-8">
+  <title>事件触发器</title>
 </head>
 <body>
-    <a href="http://blogread.cn/it/article/6160" target="_blank">javascript事件触发器fireEvent和dispatchEvent</a>
+<a href="http://blogread.cn/it/article/6160" target="_blank">javascript事件触发器fireEvent和dispatchEvent</a>
+<p>
+  事件触发器就是用来触发某个元素下的某个事件，IE下fireEvent方法，高级浏览器（chrome,firefox等）有dispatchEvent方法
+</p>
+
+<button type="button" id="obj">obj</button>
+<script>
+  document.addEventListener('ondatatest', function (event) {
+      console.log(event)
+  }, false)
+
+  var event = document.createEvent('HTMLEvents');
+  event.initEvent("ondatatest", true, true);
+  event.eventType = 'message';
+  document.dispatchEvent(event)
+</script>
 </body>
 </html>
