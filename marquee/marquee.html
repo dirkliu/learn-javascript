@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>marquee</title>
+  <style type="text/css">
+    * {
+      margin:0;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+    }
+    .slide >li{
+      text-align: center;
+      line-height: 25px;
+    }
+    .marquee{
+      height:50px;
+      overflow: hidden;
+      position:relative;
+    }
+    .marquee-scroll {
+      position:absolute;
+      width:100%;
+    }
+  </style>
+</head>
+<body>
+<div class="marquee">
+  <div class="marquee-scroll" style="top:0">
+    <ul class="slide slide1">
+      <li>滚动1滚动1滚动1滚动1滚动1滚动1滚动1滚动1滚动1滚动1</li>
+      <li>滚动2滚动2滚动2滚动2滚动2滚动2滚动2滚动2滚动2滚动2</li>
+      <li>滚动3滚动3滚动3滚动3滚动3滚动3滚动3滚动3滚动3滚动3</li>
+      <li>滚动4滚动4滚动4滚动4滚动4滚动4滚动4滚动4滚动4滚动4</li>
+      <li>滚动5滚动5滚动5滚动5滚动5滚动5滚动5滚动5滚动5滚动5</li>
+      <li>滚动6滚动6滚动6滚动6滚动6滚动6滚动6滚动6滚动6滚动6</li>
+      <li>滚动7滚动7滚动7滚动7滚动7滚动7滚动7滚动7滚动7滚动7</li>
+    </ul>
+    <ul class="slide slide2"></ul>
+  </div>
+</div>
+<script>
+  var marqueeScroll = document.getElementsByClassName('marquee-scroll')[0];
+  var slide1 = document.getElementsByClassName('slide1')[0];
+  var slide2 = document.getElementsByClassName('slide2')[0];
+  slide2.innerHTML=slide1.innerHTML;
+  roll(16.67, 1000)
+
+  function roll(speed, delay) {
+    var scrollHeight = 0;
+
+    var tk = setInterval(() => {
+      if (scrollHeight>=document.querySelector('.slide1 > li').offsetHeight) {
+        clearInterval(tk);
+        setTimeout(() => {
+                      roll(speed, delay)
+                  }, delay);
+      }
+      if (slide1.offsetHeight <= -marqueeScroll.offsetTop){
+        marqueeScroll.style.top = 0;
+      } else {
+        scrollHeight++;
+        marqueeScroll.style.top = (marqueeScroll.offsetTop-1) + 'px';
+      }
+    },speed)
+  }
+</script>
+</body>
+</html>
