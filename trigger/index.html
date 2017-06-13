@@ -11,15 +11,6 @@
 </p>
 
 <button type="button" id="obj">obj</button>
-<script>
-  document.addEventListener('ondatatest', function (event) {
-      console.log(event)
-  }, false)
-
-  var event = document.createEvent('HTMLEvents');
-  event.initEvent("ondatatest", true, true);
-  event.eventType = 'message';
-  document.dispatchEvent(event)
-</script>
+<script src="./trigger.js"></script>
 </body>
 </html>
