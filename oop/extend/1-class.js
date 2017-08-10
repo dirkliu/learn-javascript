@@ -15,12 +15,27 @@ function SubClass () {
 }
 
 //继承父类
-SubClass.protptype = new SuperClass();
+SubClass.prototype = new SuperClass();
+SubClass.prototype.name = 'SubClass';
+SubClass.prototype.names = ['SubClass']
 SubClass.prototype.getSubValue = function () {
   return this.subValue
 }
 
 var instance = new SubClass();
+var instance1 = new SubClass()
+instance.name = 'instance'
+instance.names.push('instance')
+instance.names = ['instance']
+instance1.name = 'instance1'
+instance1.names.push('instance1')
+console.log('instance name:', instance.name)
+console.log('instance1 name:', instance1.name)
+console.log('instance names:', instance.names)
+console.log('instance1 names:', instance1.names)
+console.log('instance:', instance)
+
+
 console.log(instance.getSuperValue())
 console.log(instance.getSubValue())
 
