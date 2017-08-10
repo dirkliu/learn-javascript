@@ -19,12 +19,15 @@ var Book = (function () {
     //公有属性
     this.id = newId;
 
-    //公有方法
-    this.copy = function() {};
+    // 特权方法
     this.getName = function() {};
     this.getPrice = function() {};
     this.setName = function() {};
     this.setPrice = function() {};
+
+    //公有方法
+    this.copy = function() {};
+
     bookNum++;
 
     this.setName(name);
@@ -48,4 +51,3 @@ var Book = (function () {
 var b = new Book();
 console.log(b.id)
 console.log(b.bookNum)
-
