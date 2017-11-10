@@ -1,5 +1,19 @@
 var a = Object.create({x:1, y:2});
-console.log('a:', a.__proto__)
 
 var ar = Object.create(Array)
-console.log('ar:', ar.__proto__)
+
+// 可配置的的对象, 数据双向绑定。
+var config = {};
+var aVal = '1'
+Object.defineProperty(config, 'a', {
+  get: function () {
+    return aVal
+  },
+  set: function (newVal) {
+    aVal = newVal
+  }
+})
+config.a = '2'
+console.log(aVal)
+aVal = 3
+console.log('a:', config.a)
