@@ -1,4 +1,6 @@
 'use strict';
+// Object 的length 为1，可以这样理解啊，函数的length就是它的参数的个数啊
+console.log('Object.length:', Object.length)
 var a = Object.create({x:1, y:2});
 
 var ar = Object.create(Array)
@@ -47,7 +49,21 @@ Object.defineProperty(objTest1, 'y', {
 })
 objTest1.y = 'y'
 console.log('objTest1 y:', objTest1.y)
-// 会报错，不可配置的属性，不能重新设置属性特性。
+// 会报错，不可配置的属性，不能重新设置属性特性。 也不能删除这个属性
 // Object.defineProperty(objTest1, 'y', {
 //   configurable: true
 // })
+
+//可扩展性，是否可以新增属性？
+console.log('objTest1 是否可扩展：', Object.isExtensible(objTest1))
+var objTest2 = new ObjTest();
+Object.preventExtensions(objTest2)
+console.log('objTest2 是否可扩展：', Object.isExtensible(objTest2))
+//密封对象：不可扩展，所有自有属性不可配置，不可删除。
+console.log('objTest2 是已密封？', Object.isSealed(objTest2))
+Object.seal(objTest2);
+console.log('objTest2 是已密封？', Object.isSealed(objTest2))
+// 冻结对象: 不可扩展，所有属性都是不可配置的，其所有数据属性都是不可写的。
+console.log('objTest2 是已冻结？', Object.isFrozen(objTest2))
+Object.freeze(objTest2);
+console.log('objTest2 是已冻结？', Object.isFrozen(objTest2))
