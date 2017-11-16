@@ -18,3 +18,19 @@ console.log('sliceArr:', sliceArr);
 console.log('sliced:', sliced);
 
 // 类数组对象
+var unboundSlice = Array.prototype.slice
+var sliceFunc = Function.prototype.call.bind(unboundSlice)
+function list () {
+  return sliceFunc(arguments)
+}
+var list1 = list(1,2,3)
+console.log('list1:', list1)
+
+// entries 回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
+var arr = ["a", "b", "c"];
+var iterator = arr.entries();
+console.log(iterator);
+console.log(iterator.next().value);
+console.log(iterator.next().value);
+console.log(iterator.next().value);
+console.log(iterator.next().value);
