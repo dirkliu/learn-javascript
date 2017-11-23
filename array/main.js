@@ -34,3 +34,37 @@ console.log(iterator.next().value);
 console.log(iterator.next().value);
 console.log(iterator.next().value);
 console.log(iterator.next().value);
+
+// indexOf 和 lastIndexOf 判断指定元素的出现位置
+var indexArr = ['test', 'indexOf', 'last', 'index', 'indexOf'];
+console.log('indexOf, 元素首次出现的位置', indexArr.indexOf('indexOf'))
+console.log('lastIndexOf, 元素首次出现的位置', indexArr.lastIndexOf('indexOf'))
+
+// 数组类型检测
+console.log('ecma5数组类型检测方法 Array.isArray：', Array.isArray(arr));
+// ecmascript5之前
+var isArray = Function.isArray || function (o) {
+  return typeof o === "object" && Object.prototype.toString.call(o) === '[object Array]'
+}
+
+// 判定一个对象是否是类数组对象
+// 字符串核函数有length 属性， 但是它们可以用typeof将其排除。
+// 在客户端javascript中，DOM文本节点也有length属性，需要用额外判断o.nodeType != 3将其排除
+function isArrayLike (o) {
+  if (o &&
+      typeof 0 === 'object' &&
+      isFinite(o.length) &&
+      o.length >=0 &&
+      o.length === Math.floor(o.length) &&
+      o.length < 429467296) {
+      return true
+  } else {
+    return false
+  }
+}
+// 模拟类数组对象，并对其进行操作
+var arrayLike = {"0": "a", "1": "b", "2": "c", length: 3};
+var joinStr = Array.prototype.join.call(arrayLike, '+');
+var arrayClone = Array.prototype.slice.call(arrayLike, 0);
+console.log('类数组对象判断:', isArrayLike(arrayLike))
+console.log('类数组对象的数组副本:', arrayClone)
