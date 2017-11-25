@@ -68,3 +68,8 @@ var joinStr = Array.prototype.join.call(arrayLike, '+');
 var arrayClone = Array.prototype.slice.call(arrayLike, 0);
 console.log('类数组对象判断:', isArrayLike(arrayLike))
 console.log('类数组对象的数组副本:', arrayClone)
+
+// 作为数组的字符串
+var s = "test";
+console.log(s.charAt(0));
+console.log(s[1])
