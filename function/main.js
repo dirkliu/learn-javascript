@@ -35,3 +35,14 @@ var oTest = {
   }
 }
 var constructorTest = new oTest.test();
+
+// 测试一下vue 源码里的?:用法， 发现报错。
+// var op= function (a?: string, b?: boolean) {
+//   console.log('a?:', a)
+//   console.log('b?:', b)
+// }
+// op('test', false)
+// var a = null;
+// var b = 'test';
+// // var y = a?: b;
+// console.log(a?: b)
