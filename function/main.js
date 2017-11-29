@@ -1,4 +1,4 @@
-// 'use strict'
+//'use strict'
 // 函数的调用
 console.log('JAVASCRIPT的函数调用分为四种-->: 作为函数；作为方法；作为构造函数；call或apply间接调用。')
 
@@ -36,13 +36,17 @@ var oTest = {
 }
 var constructorTest = new oTest.test();
 
-// 测试一下vue 源码里的?:用法， 发现报错。
-// var op= function (a?: string, b?: boolean) {
-//   console.log('a?:', a)
-//   console.log('b?:', b)
-// }
-// op('test', false)
-// var a = null;
-// var b = 'test';
-// // var y = a?: b;
-// console.log(a?: b)
+// 操作实参argument对象， 严格模式下会报错。
+function opeArg (x) {
+  console.log('操作实参argument对象1:', x)
+  arguments[0] = null;
+  console.log('操作实参argument对象2:', x)
+}
+opeArg()
+
+// callee 与 caller， callee指代当前正在执行的函数。caller指代调用当前函数的函数
+function factorial (x) {
+  if (x <= 1) return 1;
+  return x * arguments.callee(x-1)
+}
+console.log('arguments.callee调用: ', factorial(5))
