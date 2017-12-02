@@ -44,9 +44,53 @@ function opeArg (x) {
 }
 opeArg()
 
+
 // callee 与 caller， callee指代当前正在执行的函数。caller指代调用当前函数的函数
 function factorial (x) {
   if (x <= 1) return 1;
   return x * arguments.callee(x-1)
 }
 console.log('arguments.callee调用: ', factorial(5))
+
+// 闭包
+// 函数每调用一次，都会创建一个新的作用域链
+function counter () {
+  var n = 0;
+  return {
+    count: function () { return n++;},
+    reset: function () { n = 0;}
+  }
+}
+var c = counter(), d = counter();
+console.log('c.count():', c.count())
+console.log('d.count():', d.count())
+c.reset()
+console.log('c.count()1:', c.count())
+console.log('d.count()1:', d.count())
+function constfuncs () {
+  var funcs = [];
+  for (var i= 0; i<10; i++) {
+    funcs[i] = function () {return i;}
+  };
+  return funcs;
+}
+var funcs = constfuncs();
+funcs[5](); //10
+
+// 函数的类型
+var typeFunc = function () {}
+console.log('typeof function:', typeof typeFunc) // function
+console.log('Object toString', Object.prototype.toString.call(typeFunc)) // [object Function]
+
+
+// 函数属性， 方法和构造函数
+function funcLength(x, y) {
+  console.log('arguments.length 实参个数:', argument.length)
+  console.log('function.length 形参个数:', arguments.callee.length)
+}
+funcLength(3,2)
+// call, apply 和 bind
+// f.call(o, 1, 2)
+// f.apply(o, [1, 2])
+var numArray = [1,3,4,7,5]
+var biggest = Math.max.apply(Math, numArray) // 求一个数组中的最大值
