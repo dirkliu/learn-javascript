@@ -10,14 +10,20 @@ http.createServer(function (req, res) {
     if (pathname === '/') {
         pathname = '/index.html';
     }
-    fs.readFile(path.join(__dirname, pathname), function (err, file) {
-        if (err) {
-            res.writeHead(404, {"Content-Type": "text/html;charset:utf-8"});
-            res.end('404,Not found!');
-            return;
-        }
-        res.writeHead(200, {"Content-Type": "text/html;charset:utf-8"});
-        res.end(file);
-    });
-    console.log('Static server is running! ROOT:', __dirname);
+    console.log('req:', req.headers)
+    if (pathname.indexOf('/api/')===0) {
+      // 在这里返回json格式的数据
+      
+    } else {
+      fs.readFile(path.join(__dirname, pathname), function (err, file) {
+          if (err) {
+              res.writeHead(404, {"Content-Type": "text/html;charset:utf-8"});
+              res.end('404,Not found!');
+              return;
+          }
+          res.writeHead(200, {"Content-Type": "text/html;charset:utf-8"});
+          res.end(file);
+      });
+      console.log('Static server is running! ROOT:', __dirname);
+    }
 }).listen(80);
