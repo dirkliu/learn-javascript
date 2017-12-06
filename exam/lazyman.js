@@ -30,12 +30,12 @@ var LazyMan = (function () {
     }
 
     function _lazyMan(name) {
-        if (this instanceof LazyMan) {
+        if (this instanceof _lazyMan) {
             this.name = name;
             console.log('My name is ' + this.name);
             return this;
         } else {
-            return new LazyMan(name);
+            return new _lazyMan(name);
         }
     }
 
