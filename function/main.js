@@ -85,7 +85,7 @@ console.log('Object toString', Object.prototype.toString.call(typeFunc)) // [obj
 
 // 函数属性， 方法和构造函数
 function funcLength(x, y) {
-  console.log('arguments.length 实参个数:', argument.length)
+  console.log('arguments.length 实参个数:', arguments.length)
   console.log('function.length 形参个数:', arguments.callee.length)
 }
 funcLength(3,2)
@@ -94,3 +94,34 @@ funcLength(3,2)
 // f.apply(o, [1, 2])
 var numArray = [1,3,4,7,5]
 var biggest = Math.max.apply(Math, numArray) // 求一个数组中的最大值
+
+
+// 函数式编程
+// 记忆函数
+function memorize (f) {
+  var cache = {}; // 将值保存在闭包内
+  return function () {
+    var key = arguments.length + Array.prototype.join.call(arguments, ",");
+    if (key in cache) return cache[key];
+    else return cache[key] = f.apply(this, arguments);
+  };
+}
+
+// 返回两个整数的最大公约数
+// 使用欧几里得算法： http://en,wikipedia.org/wiki/Euclidean_algorithm
+function gcd(a, b) {
+  var t;
+  if (a < b) { // 确保 a >= b
+    t=b;
+    b=a;
+    a=t;
+  }
+  while (b != 0) {
+    t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+var gcddemo = memorize(gcd);
+console.log('85和187的最大公约数是:', gcddemo(85, 187))
