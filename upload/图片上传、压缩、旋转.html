@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://whoolaladownloads.oss-cn-shanghai.aliyuncs.com/assets/css/font-awesome.css">
+    <title>Document</title>
+    <style>
+    *{margin:0;padding:0;}
+    img{vertical-align:middle;width:100%}
+    ul,li{list-style:none;}
+    .drop{width:300px;height:300px;border:1px dashed #ccc;text-align:center;color:#ccc;margin:20px auto 0;border-radius:10px;position: relative;}
+    #info div p{margin-bottom:5px;}
+    #fileBtn{display:block;width:150px;height:35px;line-height:35px;background:pink;color:#333;text-align:center;border-radius:8px;margin:0 auto;position: relative;position: absolute;left:50%;top:50%;margin:-18px 0 0 -75px;}
+    #file{opacity:0;clip: rect(10px 10px 20px 20px);position: absolute;width:100%}
+    #info{padding:15px 10px;margin:0 20%;}
+    #info ul{margin-right: -10px;}
+    #info li{width:33.33%;float:left;position:relative;}
+    #info li > div{overflow:hidden;margin-right:10px;}
+    #info li > div div{position:relative;padding-top:100%;}
+    #info li img{position:absolute;width:100%;left:0;top:50%;transform:translateY(-50%);}
+     #info li a{position:absolute;right:-5px;top:-16px;font-size:20px;width:30px;height:30px;line-height:30px;text-align:center;}
+    .slideBox{position:fixed;top:0;right:0;bottom:0;left:0;background:#000;z-index:11;visibility:hidden;}
+    .slideBox i{color:#fff;position:absolute;top:50%;padding:0 10px;margin-top:-26px;}
+    .prevBtn{left:0;}
+    .nextBtn{right:0;}
+    .slideBox .close{top:26px;padding:10px;right:0;}
+    .slideBox .content{display:table;width:100%;height:100%;}
+    .slideBox .slideCont{display:table-cell;vertical-align:middle;text-align:center;}
+    .slideBox .slideItem{padding:0 40px;}
+    .slideBox .slideItem img{width:100%;}
+    </style>
+</head>
+<body>
+    <div class="drop" id="drop">
+        <label for="file" id="fileBtn">
+            <input type="file" name="picfile" id="file" multiple="multiple" />
+            点击上传图片
+        </label>
+    </div>
+    <div id="info">
+        <ul id="fileList"></ul>
+    </div>
+    <!-- 点击图片预览已上传图片 -->
+    <div class="slideBox">
+        <i class="fa fa-close fa-2x close"></i>
+        <i class="fa fa-angle-left fa-4x tabImg prevBtn"></i>
+        <i class="fa fa-angle-right fa-4x tabImg nextBtn"></i>
+        <div class="content">
+          <div class="slideCont">
+            <div class="slideItem"><img src="https://whoolala-images-cn.oss-cn-shanghai.aliyuncs.com/original/zy69bozpgmb2016-01-20-16-25-29_750x1125.jpeg" ></div>
+          </div>
+        </div>
+      </div>
+    <script src="./jquery-2.1.4.min.js"></script>
+    <script src="./exif.js"></script>
+    <script src="./jquery.exifUpload.js"></script>
+
+    <script>
+        /**
+        * API:
+        * 
+        * new FileReader() html5读取上传文件
+        *
+        * 借助外挂 exif.js获取拍照角度进行选中校正
+        *
+        * 利用canvas 的对象方法toDataURL(fileType , 0.5)进行压缩图片
+        *
+        * 
+        *
+        **/
+        
+        $('#file').exifUpload({
+            wrap:'#info ul',
+            uploadSize:3,
+            maxSize:5,
+            uploaded:function($file){
+                var file=$file.get(0).files[0];
+                console.log(
+                    "%c上传完成回调\n图片名称："+file.name+"\n图片大小："+file.size+"\n图片类型："+file.type,
+                    " text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em"
+                    )
+            }
+        });
+            
+    </script>
+</body>
+</html>
