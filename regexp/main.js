@@ -16,3 +16,6 @@ console.log(getQuery('test'))
 
 var today = new Date().toLocaleString("zh-CN", {hour12: false}).replace(/(\d+)\/(\d+)\/(\d+).+/, '$1-$2-$3')
 console.log(today)
+
+// 非贪婪的匹配
+console.log('非贪婪的匹配555:', /\d+?/.exec('555'))
