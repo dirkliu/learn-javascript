@@ -14,8 +14,10 @@ function getQuery (name) {
 }
 console.log(getQuery('test'))
 
-var today = new Date().toLocaleString("zh-CN", {hour12: false}).replace(/(\d+)\/(\d+)\/(\d+).+/, '$1-$2-$3')
-console.log(today)
+//var today = new Date(2018,3,3,10,50,5).toLocaleString("zh-CN", {hour12: false}).replace(/(\d+)\/(\d+)\/(\d+).+/, '$1-$2-$3').replace(/\b\d\b/, '0$&').replace(/\b\d$/, '0$&')
+// []里面不能匹配界定符
+var today = new Date(2018,3,3,10,50,5).toLocaleString("zh-CN", {hour12: false}).replace(/(\d+)\/(\d+)\/(\d+).+/, '$1-$2-$3').replace(/\b\d\b/g, '0$&')
+console.log('today:', today)
 
 // 非贪婪的匹配
 console.log('非贪婪的匹配555:', /\d+?/.exec('555'))
@@ -26,3 +28,10 @@ var a123 = '\'123\''
 console.log('匹配一对引号之间的内容：', /(["'])[^"']*\1/.test(a123))
 console.log('匹配首尾相同的字符串', /^(\w{1}).*\1$/.test('a123a'))
 console.log('只分组,不后向引用', /^(\w{1}(?:x)).*(fun)\1\2$/.test('ax231funaxfun'))
+
+// 指定匹配位置
+// (?=p)零宽正向先行断言
+// (?!p)零宽负向先行断言
+// 锚字符：^,$,\b,\B
+console.log('零宽正向先行断言', /[Jj]ava([Ss]cript)?(?=\:)/.test('JavaScript: is fun'))
+console.log('零宽负向先行断言', /Java(?!Script)([A-Z])\w*/.test('JavaScript'))
