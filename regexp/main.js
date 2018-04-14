@@ -50,3 +50,15 @@ console.log('match 不带g', 'abc'.match(/\w?(\w+)/))
 console.log('match 带g', 'abc cde'.match(/\w?(\w+)/g))
 //split 使用正则表达式拆分字符串，组成数组
 console.log('split 正则表达式使用：', '1,  2,  3,4,5,6,  7'.split(/\s*,\s*/))
+
+//  RegExp 对象
+// 除了RegExp构造函数外，RegExp对象有三个方法和一些属性
+var zipcode = new RegExp("\\d{5}", 'g')
+console.log('regexp 属性 source:', zipcode.source)
+//exec() 和 test()
+var pattern = /Java/g
+var text = "JavaScript is more fun than Java!"
+var result
+while ((result = pattern.exec(text))!= null) {
+  console.log("Matched " + result[0] + "at position:" + result.index + "。 next search begins at " + pattern.lastIndex)
+}
