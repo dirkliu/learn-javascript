@@ -1,0 +1,6 @@
+const s = new Set([1, 2, '2', 2, 1, 5, {name: 1}, {name: 1}])
+console.log('s:', s)
+s.add(null)
+console.log('set add null:', s)
+s.delete(null)
+console.log('set delete:', s)
