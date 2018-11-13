@@ -16,5 +16,8 @@
     "url": "https://github.com/dirkliu/exercisejs/issues"
   },
   "homepage": "https://github.com/dirkliu/exercisejs#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.9.0"
+  }
 }
