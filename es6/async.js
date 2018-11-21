@@ -1,12 +1,15 @@
 function timeout (ms) {
 //  return Promise.resolve(setTimeout(Promise.resolve, ms))
   return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms)
+    setTimeout(() => {
+      resolve(ms)
+    }, ms)
   })
 }
 
 async function asyncPrint (value, ms) {
-  await timeout(ms);
+  const delay = await timeout(ms);
+  console.log('delay * 2:', delay * 2)
   console.log(value + ' ' + ms);
 }
 
