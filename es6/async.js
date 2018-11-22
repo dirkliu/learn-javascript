@@ -7,10 +7,22 @@ function timeout (ms) {
   })
 }
 
+function rejectDelay (ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return reject(ms)
+    }, ms)
+  })  
+}
+
 async function asyncPrint (value, ms) {
-  const delay = await timeout(ms);
+  const delay = await timeout(ms)
   console.log('delay * 2:', delay * 2)
   console.log(value + ' ' + ms);
+  const delayT = await rejectDelay (5).catch(err => {
+    console.log('err:', err)
+  })
+  console.log('delayT:', delayT)
 }
 
 asyncPrint('test async timeout', 5000)
