@@ -11,7 +11,27 @@ class Point {
     console.log('position:', position)
     return '(' + this.x + ', ' + this.y + ')'
   }
+
+  // set ids (value) {
+  //   this.idList = value.split(',')
+  // }
+  set idList (value) {
+    this.ids = value.join(',')
+  }
+
+  get idList () {
+    return this.ids ? this.ids.split(',') : []
+  }
 }
 
 var p = new Point(10, 65)
+// p.ids = '1,3,45,5'
+Object.assign(p, {
+  ids: '1,2,3,22,33'
+})
+console.log('idList:', p.idList)
+p.idList = [1,3,4,5,6,7,8,9]
+// p.idList.push(100) // push不会触发setter
+console.log('ids:', p.ids)
 p.toString()
+
