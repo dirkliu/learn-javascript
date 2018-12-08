@@ -34,4 +34,3 @@ p.idList = [1,3,4,5,6,7,8,9]
 // p.idList.push(100) // push不会触发setter
 console.log('ids:', p.ids)
 p.toString()
-
