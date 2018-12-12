@@ -40,7 +40,9 @@ class FormModel {
   }
 }
 
-let formData = new FormModel.setDefaults({
+let formData = new FormModel({
+  ids: '176'
+}).setDefaults({
   ids: '123'
 })
 
