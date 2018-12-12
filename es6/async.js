@@ -16,13 +16,20 @@ function rejectDelay (ms) {
 }
 
 async function asyncPrint (value, ms) {
-  const delay = await timeout(ms)
+  const delay = await timeout(8000)
   console.log('delay * 2:', delay * 2)
   console.log(value + ' ' + ms);
   const delayT = await rejectDelay (5).catch(err => {
     console.log('err:', err)
   })
   console.log('delayT:', delayT)
+  return delay
 }
 
-asyncPrint('test async timeout', 5000)
+async function loadAsync () {
+  console.log('tttt')
+  let delay = await asyncPrint()
+  console.log('hhhh:', delay)
+}
+// asyncPrint('test async timeout', 5000)
+loadAsync()
