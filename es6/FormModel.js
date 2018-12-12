@@ -3,23 +3,27 @@ require("babel-polyfill")
 class FormModel {
 
   constructor (options) {
+    this._observeKeys = []
+    this.defaults = {}
     Object.assign(this, options)
     this._setObserve(options)
+    return this
   }
 
   _setObserve (options) {
-    !this._observeKeys && this._observeKeys = []
     Object.keys(options).forEach(key => {
-      this._observeKeys(key)
-      Object.defineProperty(this, key, {
-        set (value) {
-          this['_' + key] = value || options[key]
-        },
-        get () {
+      if (this._observeKeys.indexOf(key) === -1) {
+        this._observeKeys.push(key)
+        Object.defineProperty(this, key, {
+          set (value) {
+            this['_' + key] = value || options[key]
+          },
+          get () {
           // console.log('key:', key)
-          return this['_' + key] || options[key]
-        }
+            return this['_' + key] || options[key]
+          }
       })
+      }
     })
   }
 
@@ -31,16 +35,12 @@ class FormModel {
       })
     })
     this._setObserve(options)
-    this.defaults = options
+    Object.assign(this.defaults, options)
     return this
   }
 }
 
-let formData = new FormModel({
-  ids: '176'
-})
-
-formData.setDefaults({
+let formData = new FormModel.setDefaults({
   ids: '123'
 })
 
