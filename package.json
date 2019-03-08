@@ -16,7 +16,9 @@
     "url": "https://github.com/dirkliu/exercisejs/issues"
   },
   "homepage": "https://github.com/dirkliu/exercisejs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
