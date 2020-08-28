@@ -2,6 +2,5 @@
 1. javascript基础知识  
 2. ecmascript标准
 
-
 ### Promise 
-* [手动实现Promise](myPromise/MyPromise.js)
+* [手动实现Promise](promise/MyPromise.js)
