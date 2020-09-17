@@ -7,10 +7,16 @@ var a = {
 }
 
 var b = {
-  a: a
+  a: a,
+  name: '7qqq'
 }
 
 var c = Object.assign({}, b);
-a.name = '777'
+
 
 console.log('c:', c)
+
+var d = Object.assign({}, b)
+b.name = 'aggd'
+
+console.log('d:', d)
