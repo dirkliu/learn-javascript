@@ -115,16 +115,5 @@ function search (param, list) {
   return flatList.filter(item => item.name.indexOf(param) > -1)
 }
 
-function treeSearch (param, list) {
-  let treeSearchList = []
-  let searchList = search(param, list)
-
-  return treeSearchList
-}
-
-function traceback (node, nodeList) {
-
-}
-
 let searchList = search('秋田', list)
 console.log('searchList:', searchList)
